@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  coreos:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: local
+    tty: true
+    stdin_open: true
+    command: "air -c .air.coreos.toml"
+    volumes:
+      - .:/go/src/github.com/Sakamoto0525/shepherd
+    ports:
+      - 8080:8080
+    networks:
+      - shepherd-network
+
+  zitadel:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: local
+    tty: true
+    stdin_open: true
+    command: "air -c .air.zitadel.toml"
+    volumes:
+      - .:/go/src/github.com/Sakamoto0525/shepherd
+    ports:
+      - 8081:8080
+    networks:
+      - shepherd-network
+
+networks:
+  shepherd-network:
+    external:
+      name: shepherd-network

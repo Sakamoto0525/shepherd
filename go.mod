@@ -1,4 +1,4 @@
-module github.com/Sakamoto0525/coreos
+module github.com/Sakamoto0525/shepherd
 
 go 1.22.1
 
